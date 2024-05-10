@@ -1,0 +1,49 @@
+:root {
+  --gradient: linear-gradient(
+    90deg,
+    /* Change the angle to 90 degrees */ rgba(45, 112, 1000, 0.73) 50%,
+    /* Start color with alpha transparency */ orange 100% /* End color */
+  );
+}
+
+body {
+  background: var(--gradient);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 200px;
+  flex-direction: column;
+  border: double 5px black;
+  width: 60%;
+  border-radius: 30px;
+}
+
+h4 {
+  padding: -50px;
+}
+
+select {
+  font-size: 20px;
+  border-radius: 20px;
+  text-align: center;
+  background-color: lightblue;
+}
+
+select:hover {
+  font-weight: bold;
+}
+
+p {
+  font-weight: bolder;
+}
+
+#span_result {
+  font-size: 80px;
+  font-family: cursive;
+}

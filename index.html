@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Display Local File Contents</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script>
+      function getXmlHttpRequestObject() {
+        if (window.XMLHttpRequest) {
+          return new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+          return new ActiveXObject("Microsoft.XMLHTTP");
+        } else {
+          alert(
+            "Your browser doesn't support the XmlHttpRequest object. Better upgrade to Firefox."
+          );
+        }
+      }
+
+      var receiveReq = getXmlHttpRequestObject();
+
+      function sayHello(fname) {
+        if (receiveReq.readyState == 4 || receiveReq.readyState == 0) {
+          receiveReq.open("GET", fname, true);
+          receiveReq.onreadystatechange = handleSayHello;
+          receiveReq.send(null);
+        }
+      }
+
+      function handleSayHello() {
+        if (receiveReq.readyState == 4) {
+          if (receiveReq.status == 200) {
+            document.getElementById("span_result").innerHTML =
+              receiveReq.responseText;
+          } else {
+            document.getElementById("span_result").innerHTML =
+              "Error: " + receiveReq.status;
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Ajax Get method to Display Local File content</h1>
+
+      <h2>Select the file to read.</h2>
+      <select name="files" onchange="sayHello(this.value)">
+        <option value="file.txt">file.txt</option>
+        <option value="file2.txt">file2.txt</option>
+        <option value="ajax.html">Ajax.html</option></select
+      ><br />
+      <p>Contents of the file will be displayed below:-</p>
+      <div id="span_result"></div>
+    </div>
+  </body>
+</html>
